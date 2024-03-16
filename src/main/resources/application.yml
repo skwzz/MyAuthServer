@@ -1,1 +1,17 @@
-spring.application.name=MyAuthServer
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3307/test_auth?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 1234
+    #hikari:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+logging:
+  level:
+    sql: debug
+
