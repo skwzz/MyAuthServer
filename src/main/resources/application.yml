@@ -15,3 +15,7 @@ logging:
   level:
     sql: debug
 
+jwt:
+  secret-key: UUQ8mYSm5xX3Y04qYYoT310L22J3kR4AVf4mv3cXQ8hKe6n2uMOBY7UNldskIdWT
+  access-token-validity: 86400
+  refresh-token-validity: 186400

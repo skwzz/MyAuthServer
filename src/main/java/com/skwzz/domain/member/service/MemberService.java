@@ -9,6 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class MemberService {
@@ -17,7 +19,11 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public void signUp(SignUpDto signUpDto){
+    public void signUp(SignUpDto signUpDto) throws Exception {
+
+        Optional<Member> maybeMember = memberRepository.findByUsername(signUpDto.getUsername());
+        if(maybeMember.isPresent()) throw new Exception("이미 등록된 사용자 입니다.");
+
         Member member = Member.builder()
                 .username(signUpDto.getUsername())
                 .password(passwordEncoder.encode(signUpDto.getPassword()))
