@@ -10,9 +10,4 @@ public class SampleController {
     public String sample(){
         return "sample";
     }
-
-    @GetMapping("/sample2")
-    public String sample(){
-        return "sample2";
-    }
 }
