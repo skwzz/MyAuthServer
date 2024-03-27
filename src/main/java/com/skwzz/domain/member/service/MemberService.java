@@ -5,6 +5,7 @@ import com.skwzz.domain.member.entity.Member;
 import com.skwzz.domain.member.mapper.MemberMapper;
 import com.skwzz.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,5 +30,9 @@ public class MemberService {
                 .password(passwordEncoder.encode(signUpDto.getPassword()))
                 .build();
         memberRepository.save(member);
+    }
+
+    public Member findMemberInfo(String username){
+        return memberRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
     }
 }

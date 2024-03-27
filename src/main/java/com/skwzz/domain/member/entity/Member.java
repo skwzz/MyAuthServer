@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 
+@ToString(exclude = "password")
 @Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
